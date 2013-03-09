@@ -1,3 +1,37 @@
+int ROW = 8;
+int COL = 8;
+int NUM = ROW * COL;
+GenLogo gen[] = new GenLogo[NUM];
+
+void setup() {
+  size(600, 600);
+  frameRate(15);
+  colorMode(HSB, 360, 100, 100, 100);
+  for (int j = 0; j < ROW; j++) {
+    for (int i = 0; i < COL; i++) {
+      gen[j * ROW + i] = new GenLogo(i * width/float(COL), j * height/float(ROW), width/float(COL), height/float(ROW));
+    }
+  }
+}
+
+void draw() {
+  background(0, 0, 100, 100);
+  for (int i = 0; i < NUM; i++) {
+    gen[i].draw();
+  }
+  for (int i = 0; i < NUM; i++) {
+    gen[i].drawFrame();
+  }
+}
+
+void mouseReleased() {
+  for (int i = 0; i < NUM; i++) {
+    gen[i].mouseReleased();
+  }
+}
+
+PImage frameImg;
+
 class GenLogo {
   int NUM = 4;
   float x[] = new float[NUM];
@@ -35,6 +69,11 @@ class GenLogo {
     pushMatrix();
 
     translate(left, top);
+
+    /*
+    fill(63, 127, 255);
+     rect(0, 0, width, height);
+     */
 
     setGradient(10, 10, width-20, height-20, c1, c2, Y_AXIS);
 
@@ -75,7 +114,7 @@ class GenLogo {
         stroke(c);
         line(x, i, x+w, i);
       }
-    } 
+    }  
     else if (axis == X_AXIS) {  // Left to right gradient
       for (int i = x; i <= x+w; i++) {
         float inter = map(i, x, x+w, 0, 1);
@@ -86,4 +125,5 @@ class GenLogo {
     }
   }
 };
+
 

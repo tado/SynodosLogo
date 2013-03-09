@@ -2,6 +2,7 @@ int ROW = 8;
 int COL = 8;
 int NUM = ROW * COL;
 GenLogo gen[] = new GenLogo[NUM];
+PImage frameImg;
 
 void setup() {
   size(600, 600);
@@ -15,7 +16,7 @@ void setup() {
 }
 
 void draw() {
-  background(0,0,100,100);
+  background(0, 0, 100, 100);
   for (int i = 0; i < NUM; i++) {
     gen[i].draw();
   }
