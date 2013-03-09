@@ -1,5 +1,5 @@
-int ROW = 8;
-int COL = 8;
+int ROW = 4;
+int COL = 4;
 int NUM = ROW * COL;
 GenLogo gen[] = new GenLogo[NUM];
 PImage frameImg;
