@@ -1,7 +1,8 @@
-int ROW = 8;
-int COL = 8;
+int ROW = 4;
+int COL = 4;
 int NUM = ROW * COL;
 GenLogo gen[] = new GenLogo[NUM];
+PImage frameImg;
 
 void setup() {
   size(600, 600);
@@ -29,8 +30,6 @@ void mouseReleased() {
     gen[i].mouseReleased();
   }
 }
-
-PImage frameImg;
 
 class GenLogo {
   int NUM = 4;
@@ -69,11 +68,6 @@ class GenLogo {
     pushMatrix();
 
     translate(left, top);
-
-    /*
-    fill(63, 127, 255);
-     rect(0, 0, width, height);
-     */
 
     setGradient(10, 10, width-20, height-20, c1, c2, Y_AXIS);
 
@@ -114,7 +108,7 @@ class GenLogo {
         stroke(c);
         line(x, i, x+w, i);
       }
-    }  
+    } 
     else if (axis == X_AXIS) {  // Left to right gradient
       for (int i = x; i <= x+w; i++) {
         float inter = map(i, x, x+w, 0, 1);
