@@ -7,7 +7,7 @@ PImage frameImg;
 void setup() {
   size(600, 600);
   frameRate(15);
-  //smooth();
+  smooth();
   colorMode(HSB, 360, 100, 100, 100);
   for (int j = 0; j < ROW; j++) {
     for (int i = 0; i < COL; i++) {
@@ -31,7 +31,7 @@ void mouseReleased() {
 }
 
 class GenLogo {
-  int NUM = 40;
+  int NUM = 24;
   float left, top;
   float w, h;
   color[] col = new color[NUM];
@@ -49,15 +49,16 @@ class GenLogo {
 
   void draw() {
     pushMatrix();
-    strokeWeight(2);
+    strokeWeight(1);
     translate(left + w/2.0, top + h/2.0);
     for (int j = 0; j < NUM; j++) {
       stroke(col[j]);
       rotate(j * 30);
       for (int i = 0; i < lineNum[j]; i++) {
         noFill();
-        line(0, 0, w/2.5 * pow(0.9, j), 0);
-        rotate(radians(1));
+        line(0, 0, w/2.25 * pow(0.9, j), 0);
+        //gradientLine(0, 0, w/2 * pow(0.9, j), 0, color(col[j].hue(), col[j].saturation(), 100, 20), col[j]);
+        rotate(radians(0.5));
       }
     }
     popMatrix();
@@ -71,11 +72,24 @@ class GenLogo {
   void setParams() {
     baseHue = int(random(11)) * 30;
     for (int i = 0; i < NUM; i++) {
-      col[i] = color(baseHue + random(60), random(20,60), 90, 40);
+      col[i] = color(baseHue + random(60), random(20,60), 90, 50);
       lineNum[i] = int(random(30, 360));
     }
   }
 };
+
+void gradientLine(float x1, float y1, float x2, float y2, color c1, color c2){
+  int div = 24;
+  for(int i = 0; i < div; i++){
+    float inter = map(i, 0, div, 0, 1);
+    color c = lerpColor(c1, c2, inter);
+    float x = map(i, 0, div, x1, x2);
+    float y = map(i, 0, div, y1, y2);
+    stroke(c);
+    //line(px, py, x, y);
+    point(x, y);
+  }
+}
 
 // Constants
 int Y_AXIS = 1;

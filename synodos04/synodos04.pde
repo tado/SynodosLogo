@@ -7,7 +7,7 @@ PImage frameImg;
 void setup() {
   size(600, 600);
   frameRate(15);
-  //smooth();
+  smooth();
   colorMode(HSB, 360, 100, 100, 100);
   for (int j = 0; j < ROW; j++) {
     for (int i = 0; i < COL; i++) {
